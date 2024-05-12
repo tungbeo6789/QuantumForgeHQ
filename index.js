@@ -1,11 +1,17 @@
-function minMeetingRooms(intervals) {
-  intervals.sort((a, b) => a[0] - b[0]);
-  const minHeap = new MinHeap();
-  for (const interval of intervals) {
-    if (minHeap.size() > 0 && minHeap.peek() <= interval[0]) {
-      minHeap.pop();
+function countAndSay(n) {
+  let result = "1";
+  for (let i = 1; i < n; i++) {
+    let temp = "";
+    let count = 1;
+    for (let j = 0; j < result.length; j++) {
+      if (result[j] === result[j + 1]) {
+        count++;
+      } else {
+        temp += count + result[j];
+        count = 1;
+      }
     }
-    minHeap.push(interval[1]);
+    result = temp;
   }
-  return minHeap.size();
+  return result;
 }
