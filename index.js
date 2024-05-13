@@ -1,17 +1,8 @@
-function countAndSay(n) {
-  let result = "1";
-  for (let i = 1; i < n; i++) {
-    let temp = "";
-    let count = 1;
-    for (let j = 0; j < result.length; j++) {
-      if (result[j] === result[j + 1]) {
-        count++;
-      } else {
-        temp += count + result[j];
-        count = 1;
-      }
-    }
-    result = temp;
-  }
-  return result;
+function minDepth(root) {
+  if (!root) return 0;
+  if (!root.left && !root.right) return 1;
+  let min = Infinity;
+  if (root.left) min = Math.min(min, minDepth(root.left));
+  if (root.right) min = Math.min(min, minDepth(root.right));
+  return min + 1;
 }
